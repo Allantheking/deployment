@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  generateName: stablediffusion-deployment-
+spec:
+  selector:
+    matchLabels:
+      app: stablediffusion
+  template:
+    metadata:
+      labels:
+        app: stablediffusion
+    spec:
+      dnsPolicy: "None"
+      dnsConfig:
+        nameservers:
+          - 8.8.8.8
+          - 1.1.1.1
+      containers:
+      - name: stablediffusion
+        image: dkr.fluxedge.ai/docker-proxy/ztricha/stablediffusion:latest
+        env:
+        - name: CLI_ARGS
+          value: "--enable-insecure-extension-access --update-check --port 7860"
+        ports:
+        - containerPort: 7860
