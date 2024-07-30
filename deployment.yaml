@@ -21,6 +21,6 @@ spec:
         image: dkr.fluxedge.ai/docker-proxy/ztricha/stablediffusion:latest
         env:
         - name: CLI_ARGS
-          value: "--enable-insecure-extension-access --update-check --port 7860"
+          value: "--enable-insecure-extension-access --share --update-check --port 7860"
         ports:
         - containerPort: 7860
